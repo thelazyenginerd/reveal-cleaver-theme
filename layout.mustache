@@ -9,7 +9,28 @@
   </style>
 </head>
 <body>
-<iframe src="http://free.timeanddate.com/clock/i4fzuvlo/n179/fn7/fs20/fcfff/tct/pct/ftb/th2" frameborder="0" width="134" height="30" allowTransparency="true"></iframe>
+<script type="text/javascript">
+function GetClock(){
+var d=new Date();
+var nhour=d.getHours(),nmin=d.getMinutes(),nsec=d.getSeconds(),ap;
+
+     if(nhour==0){ap=" AM";nhour=12;}
+else if(nhour<12){ap=" AM";}
+else if(nhour==12){ap=" PM";}
+else if(nhour>12){ap=" PM";nhour-=12;}
+
+if(nmin<=9) nmin="0"+nmin;
+if(nsec<=9) nsec="0"+nsec;
+
+document.getElementById('clockbox').innerHTML=""+nhour+":"+nmin+":"+nsec+ap+"";
+}
+
+window.onload=function(){
+GetClock();
+setInterval(GetClock,1000);
+}
+</script>
+<div id="clockbox"></div>
 <div class="reveal">
     <div class="slides">
       {{{slideshow}}}
